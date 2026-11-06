@@ -1,10 +1,8 @@
 package com.jad.model;
 
-public interface IModel<T> {
-
-    T getForest();
+public interface IModel {
 
     void generateForest(int width, int height, int type);
 
-    void displayForest();
+    void displayForest(int zoom);
 }
