@@ -1,26 +1,65 @@
 package com.jad.model;
 
+import java.util.Random;
+
 public enum Tile {
 
-    EMPTY(true, '.'),
-    CHENE(false, 'A'),
-    ACACIA(false, 'B'),
-    SAPIN(false, 'C');
+    EMPTY(true, new Sprite('.', new char[][] {
+            {'.', '.', '.'},
+            {'.', '.', '.'},
+            {'.', '.', '.'}
+    })),
 
-    private final boolean passable;
-    private final char sprite;
+    OAK(false, new Sprite('O', new char[][] {
+            {' ', 'O', ' '},
+            {'O', 'O', 'O'},
+            {' ', 'O', ' '}
+    })),
 
-    Tile(boolean passable, char sprite) {
-        this.passable = passable;
+    ACACIA(false, new Sprite('A', new char[][] {
+            {'A', 'A', 'A'},
+            {'A', 'A', 'A'},
+            {'A', 'A', 'A'}
+    })),
+
+    FIR(false, new Sprite('F', new char[][] {
+            {' ', 'F', ' '},
+            {'F', 'F', 'F'},
+            {' ', 'F', ' '}
+    }));
+
+    private final boolean walkable;
+    private final Sprite sprite;
+
+    private static final Random RANDOM = new Random();
+
+    Tile(boolean walkable, Sprite sprite) {
+        this.walkable = walkable;
         this.sprite = sprite;
     }
 
-    public boolean isPassable() {
-        return passable;
+    public boolean isWalkable() {
+        return walkable;
     }
 
-    public char getSprite() {
+    public Sprite getSprite() {
         return sprite;
     }
 
+    public char getSpriteCharacter() {
+        return sprite.getCharacter();
+    }
+
+    public static Tile getRandomNotWalkableTile() {
+        Tile[] trees = {OAK, ACACIA, FIR};
+        return trees[RANDOM.nextInt(trees.length)];
+    }
+
+    public static Tile getRandomTile(int density) {
+        if (RANDOM.nextInt(100) < density) {
+            return getRandomNotWalkableTile();
+        }
+
+        return EMPTY;
+    }
 }

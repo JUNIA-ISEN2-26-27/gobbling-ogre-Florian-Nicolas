@@ -1,8 +1,10 @@
 package com.jad.controller;
 
+import com.jad.model.IModel;
 import com.jad.view.IView;
 
 public class Controller implements IController {
+
     private final IModel model;
     private final IView view;
 
@@ -11,7 +13,6 @@ public class Controller implements IController {
         this.view = view;
         this.view.setController(this);
     }
-
 
     @Override
     public void proceed() {

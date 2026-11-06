@@ -1,13 +1,14 @@
+
 package com.jad.model;
 
-public class Model implements IModel {
+public class Model implements IModel<AbstractForest> {
 
     private AbstractForest forest;
-    private final ForestFactory factory;
+    private AbstractFactoryForest factory;
 
     public Model() {
-        factory = new ForestFactory();
-        generateForest(50, 50, 1);
+        factory = new AbstractFactoryForest();
+        forest = (AbstractForest) factory.create(50, 50, 1);
     }
 
     @Override
@@ -17,6 +18,6 @@ public class Model implements IModel {
 
     @Override
     public void generateForest(int width, int height, int type) {
-        forest = factory.createForest(width, height, type);
+        // À compléter selon la correspondance de ForestType.
     }
 }
