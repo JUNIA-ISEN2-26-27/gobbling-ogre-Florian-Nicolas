@@ -1,7 +1,6 @@
 package com.jad.view;
 
 import com.jad.controller.IController;
-import com.jad.model.IModel;
 
 public class View implements IView {
     private final IModel model;
