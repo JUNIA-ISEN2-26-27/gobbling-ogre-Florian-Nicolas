@@ -16,6 +16,7 @@ public class Controller implements IController {
 
     @Override
     public void proceed() {
-
+        this.model.generateForest(50, 50, 0);
+        this.model.displayForest();
     }
 }
